@@ -8,8 +8,8 @@ const Navbar = () => {
             <div className="flex-none">
                 <ul className="menu menu-horizontal text-white text-lg p-4">
                     <li><a>HOME</a></li>
-                    <li><a>ABOUT</a></li>
-                    <li><a>CONTACT</a></li>
+                    <li><a>GALLERY</a></li>
+                    <li className="btn btn-white p-1"><a>+ ADD ARTWORK</a></li>
                 </ul>
             </div>
         </div>
