@@ -13,8 +13,8 @@ const ApiResponseSchema = z.object({
 
 export type Artwork = z.infer<typeof ArtworkSchema>;
 
-export async function fetchArtworks(query: string){
-    const res = await fetch(`https://api.artic.edu/api/v1/artworks/search?q=${query}&fields=id,title,artist_title,image_id`)
+export async function fetchArtworks(searchTerm: string){
+    const res = await fetch(`https://api.artic.edu/api/v1/artworks/search?q=${searchTerm}&fields=id,title,artist_title,image_id`)
     if (!res.ok) {
         throw new Error('Failed to fetch artworks');
     }
