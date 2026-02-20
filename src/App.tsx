@@ -5,6 +5,9 @@ import { SearchBar } from "./components/SearchBar";
 import ArtworkCard from "./components/ArtworkCard";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import { saveArtwork } from "./services/storage";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Gallery from "./components/Gallery";
 
 function App() {
   const [artworks, setArtworks] = useState<Artwork[]>([]);
@@ -23,25 +26,38 @@ function App() {
     } finally {
       setLoading(false);
     }
+  };
+
+  const handleSaveToGallery = (artwork: Artwork) => {
+    saveArtwork(artwork);
+    setArtworks(prev => prev.map(a => a.id === artwork.id ? {...a, saved: true} : a));
+    // maybe add a "saved" message or change the button on the ArtworkCard to "Saved!" after saving?
   }
 
   return (
-    <div>
+    <BrowserRouter>
       <Navbar />
-      <div className="p-4 max-w-4xl mx-auto">
-      <h1 className="text-3xl font-bold mb-4 text-center mt-4">Search the Art Institute of Chicago's Collection</h1>
-      <SearchBar searchTerm={searchTerm} onSearchTermChange={setSearchTerm} onSearch={handleSearch} loading={loading} />
-      {error && <p style={{color: 'red'}}>{error}</p>}
-      {artworks.length > 0 && (
-        <div>
-          <h2>Results: {artworks.length} artworks found</h2>
-          <ArtworkCard artworks={artworks} />
-        </div>
-      )}
+        <div className="p-4 max-w-4xl mx-auto">
+          <Routes>
+            <Route path="/" element={
+              <div>
+                <h1 className="text-3xl font-bold mb-4 text-center mt-4">Search the Art Institute of Chicago's Collection</h1>
+                <SearchBar searchTerm={searchTerm} onSearchTermChange={setSearchTerm} onSearch={handleSearch} loading={loading} />
+                {error && <p style={{color: 'red'}}>{error}</p>}
+                {artworks.length > 0 && (
+                  <div>
+                    <h2>Results: {artworks.length} artworks found</h2>
+                    <ArtworkCard artworks={artworks} onSave={handleSaveToGallery} />
+                  </div>
+                )}
+              </div>
+            } />
+          <Route path="/gallery" element={<Gallery />} />
+        </Routes>
       </div>
       <Footer />
-    </div>
-  )
+    </BrowserRouter>
+    ) 
 }
 
 export default App

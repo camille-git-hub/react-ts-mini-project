@@ -1,6 +1,6 @@
 import type { Artwork } from "../services/api";
 
-const ArtworkCard = ({ artworks }: { artworks: Artwork[] }) => {
+const ArtworkCard = ({ artworks, onSave }: { artworks: Artwork[], onSave: (artwork: Artwork) => void }) => {
     return (<>  </>)
 }
 
