@@ -15,12 +15,14 @@ function App() {
   const [error, setError] = useState<string | null>(null);
   const [searchTerm, setSearchTerm] = useState("");
 
+
   const handleSearch = async () => {
     setLoading(true);
     setError(null);
     try {
       const data = await fetchArtworks(searchTerm);
-      setArtworks(data);
+      const savedArtworks = data.map(artwork => ({ ...artwork, saved: false }));
+      setArtworks(savedArtworks);
     } catch (err) {
       setError((err as Error).message);
     } finally {
@@ -31,7 +33,6 @@ function App() {
   const handleSaveToGallery = (artwork: Artwork) => {
     saveArtwork(artwork);
     setArtworks(prev => prev.map(a => a.id === artwork.id ? {...a, saved: true} : a));
-    // maybe add a "saved" message or change the button on the ArtworkCard to "Saved!" after saving?
   }
 
   return (
@@ -40,14 +41,14 @@ function App() {
         <div className="p-4 max-w-4xl mx-auto">
           <Routes>
             <Route path="/" element={
-              <div>
+              <div className="">
                 <h1 className="text-3xl font-bold mb-4 text-center mt-4">Search the Art Institute of Chicago's Collection</h1>
                 <SearchBar searchTerm={searchTerm} onSearchTermChange={setSearchTerm} onSearch={handleSearch} loading={loading} />
                 {error && <p style={{color: 'red'}}>{error}</p>}
                 {artworks.length > 0 && (
                   <div>
-                    <h2>Results: {artworks.length} artworks found</h2>
-                    <ArtworkCard artworks={artworks} onSave={handleSaveToGallery} />
+                    <h2 className="mb-4">Results: {artworks.length} artworks found</h2>
+                    <ArtworkCard artworks={artworks} onSave={handleSaveToGallery} mode="search"/>
                   </div>
                 )}
               </div>

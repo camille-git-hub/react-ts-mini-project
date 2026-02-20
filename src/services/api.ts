@@ -11,7 +11,7 @@ const ApiResponseSchema = z.object({
   data: z.array(ArtworkSchema)
 });
 
-export type Artwork = z.infer<typeof ArtworkSchema>;
+export type Artwork = z.infer<typeof ArtworkSchema> & { saved?: boolean };
 
 export async function fetchArtworks(searchTerm: string){
     const res = await fetch(`https://api.artic.edu/api/v1/artworks/search?q=${searchTerm}&fields=id,title,artist_title,image_id`)
