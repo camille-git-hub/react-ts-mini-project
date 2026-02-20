@@ -26,7 +26,6 @@ function App() {
     } finally {
       setLoading(false);
     }
-    console.log(artworks);
   };
 
   const handleSaveToGallery = (artwork: Artwork) => {
