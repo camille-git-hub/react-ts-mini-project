@@ -15,7 +15,6 @@ function App() {
   const [error, setError] = useState<string | null>(null);
   const [searchTerm, setSearchTerm] = useState("");
 
-
   const handleSearch = async () => {
     setLoading(true);
     setError(null);
@@ -38,7 +37,7 @@ function App() {
   return (
     <BrowserRouter>
       <Navbar />
-        <div className="p-4 max-w-4xl mx-auto">
+        <div className="p-4 max-w-4xl mx-auto mb-40">
           <Routes>
             <Route path="/" element={
               <div className="">

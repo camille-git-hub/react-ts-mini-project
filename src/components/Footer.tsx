@@ -1,6 +1,6 @@
 const Footer = () => {
     return (
-        <footer className="flex justify-center space-x-30 fixed bottom-0 w-full p-4 bg-base-200 text-base-content absolute sticky">
+        <footer className="footer flex justify-center space-x-30 w-full p-4 bg-base-200 text-base-content fixed bottom-0 absolute">
             <div className="flex flex-col flex-[1/3]">
                 <span className="footer-title">Services</span>
                 <a className="link link-hover">Branding</a>

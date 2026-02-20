@@ -2,7 +2,7 @@ import type { Artwork } from "../services/api";
 
 const ArtworkCard = ({ artworks, onSave, onDelete, mode }: { artworks: Artwork[], onSave?: (artwork: Artwork) => void, onDelete?: (id:number) =>void; mode?: "search" | "gallery" }) => {
     return (
-    <div className="grid grid-cols-3 sm:grid-cols-2 md:grid-cols-3 gap-4">
+    <div className="grid lg:grid-cols-3 sm:grid-cols-1 md:grid-cols-2 gap-4">
         {artworks.map((artwork) => (
             <div key={artwork.id} className="border p-4 relative flex flex-col justify-between mb-6">
                 <h3 className="text-lg font-bold">{artwork.title}</h3>
