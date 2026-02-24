@@ -8,7 +8,7 @@ type SearchBarProps = {
 
 export function SearchBar ({searchTerm, onSearchTermChange, loading, onSearch}: SearchBarProps){
     return (
-        <div className="hero-content">
+        <div className="hero-content mb-5">
             <label htmlFor="search" className="input">
             <input id="search" type="search" value={searchTerm} onChange={(e) => onSearchTermChange(e.target.value)} placeholder="What artwork are you looking for?" />
             </label>

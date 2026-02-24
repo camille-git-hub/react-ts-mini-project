@@ -19,12 +19,10 @@ const Gallery = () => {
     }
 
     return (
-    <div> 
-        <h1 className="text-3xl font-bold mb-4 text-center mt-4">My Art Gallery</h1>
-        {gallery.length === 0 ? <p>Your gallery is empty. Use the search function to add artworks to the gallery and display them here.</p> :
-        gallery.map((artwork) => (
-            <ArtworkCard key={artwork.id} artworks={[artwork]} onSave={() => {}} />
-        ))}
+    <div className=""> 
+        <h1 className="text-3xl font-bold mb-4 p-4 text-center mt-4">My Art Gallery</h1>
+        {gallery.length === 0 ? <p className="text-center">Your gallery is empty. Use the search function to add artworks to the gallery and display them here.</p> :
+        <ArtworkCard key={gallery[0].id} artworks={gallery} onDelete={handleDelete} mode="gallery"/>}
     
     </div>
     )
